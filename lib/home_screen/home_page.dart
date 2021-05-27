@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       offset: offset,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 25, right: 25, bottom: 20),
+                      padding: EdgeInsets.only(left: 26, right: 25, bottom: 20),
                       child: TypeAheadFormField(
                         textFieldConfiguration: TextFieldConfiguration(
                           controller: textEditingController,
