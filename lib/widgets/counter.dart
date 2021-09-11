@@ -1,6 +1,6 @@
-import 'package:covid_track/resources/consts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../resources/consts.dart';
 
 class Counter extends StatelessWidget {
   final int number;
@@ -13,11 +13,11 @@ class Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2.5,
-      padding: EdgeInsets.all(10),
+      width: MediaQuery.of(context).size.width / 2.2,
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: kBackgroundColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: kShadowColor,
@@ -30,7 +30,7 @@ class Counter extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             height: 24,
             width: 24,
             decoration: BoxDecoration(

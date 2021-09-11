@@ -1,9 +1,10 @@
-import 'package:covid_track/home_screen/home_screen_country_detail.dart';
-import 'package:covid_track/home_screen/home_screen_global_detail.dart';
-import 'package:covid_track/home_screen/navigation_option.dart';
+import 'package:covid_track/widgets/home_screen_country_detail.dart';
+import 'package:covid_track/widgets/home_screen_global_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
+import 'navigation_option.dart';
 
 enum NavigationStatus {
   GLOBAL,
@@ -41,8 +42,8 @@ class _TrackerState extends State<Tracker> {
               child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 0),
                 child: navigationStatus == NavigationStatus.COUNTRY
-                    ? Country()
-                    : Global(),
+                    ? CountryDetail()
+                    : GlobalDetail(),
               ),
             ),
           ),

@@ -1,9 +1,8 @@
-import 'package:covid_track/widgets/counter.dart';
-import 'package:covid_track/home_screen/models/country_summany.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/counter.dart';
+import '../home_screen/models/country_summany.dart';
 import '../infor_screen/call.dart';
 import '../resources/consts.dart';
 
@@ -28,7 +27,7 @@ class CountryStatisticsNew extends StatelessWidget {
                   subtitle: summaryNewList.todayCases,
                   title: "Nhiễm bệnh",
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Counter(
                   color: kPrimaryColor,
                   number: summaryNewList.active,
@@ -47,7 +46,7 @@ class CountryStatisticsNew extends StatelessWidget {
                   subtitle: summaryNewList.todayRecovered,
                   title: "Hồi phục",
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Counter(
                   color: kDeathColor,
                   number: summaryNewList.deaths,
@@ -59,7 +58,7 @@ class CountryStatisticsNew extends StatelessWidget {
           ],
         )),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

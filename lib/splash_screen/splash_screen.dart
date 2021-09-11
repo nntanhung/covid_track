@@ -1,16 +1,15 @@
-import 'package:covid_track/resources/consts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import '../resources/consts.dart';
 import '../tab_bar.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashPageState createState() => _SplashPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();

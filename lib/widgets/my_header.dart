@@ -1,6 +1,7 @@
-import 'package:covid_track/resources/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../resources/consts.dart';
 
 class MyHeader extends StatefulWidget {
   final String image;
@@ -63,44 +64,6 @@ class _MyHeaderState extends State<MyHeader> {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //   top: 115 - widget.offset / 2,
-                  //   left: 180,
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       // Text(
-                  //       //   "Liên hệ",
-                  //       //   style: kSubTextStyle.copyWith(
-                  //       //     color: Colors.white,fontWeight: FontWeight.bold
-                  //       //   ),
-                  //       // ),
-                  //       FlatButton.icon(
-                  //         // padding: const EdgeInsets.symmetric(
-                  //         //   vertical: 10.0,
-                  //         //   horizontal: 20.0,
-                  //         // ),
-                  //         onPressed: () {},
-                  //         color: Colors.red,
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(30.0),
-                  //         ),
-                  //         icon: const Icon(
-                  //           Icons.phone,
-                  //           color: Colors.white,
-                  //           size: 15,
-                  //         ),
-                  //         label: Text(
-                  //           'Liên hệ',
-                  //           style: TextStyle(fontSize: 12,color: Colors.white,),
-                  //         ),
-                  //
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-//                  Container(), // I dont know why it can't work without container
                 ],
               ),
             ),

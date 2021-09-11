@@ -13,11 +13,9 @@ class CountryLoading extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // inputTextLoading ? loadingInputCard(context) : Container(),
-          // loadingCard(),
           loadingCard(context),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -51,69 +49,7 @@ class CountryLoading extends StatelessWidget {
     );
   }
 
-  // Widget loadingCard() {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(horizontal: 10),
-  //     decoration: BoxDecoration(
-  //       color: kBackgroundColor,
-  //       borderRadius: BorderRadius.circular(20),
-  //       boxShadow: [
-  //         BoxShadow(
-  //           color: kShadowColor,
-  //           blurRadius: 15,
-  //           offset: Offset(2, 4), // changes position of shadow
-  //         ),
-  //       ],
-  //     ),
-  //     child: Container(
-  //       height: 200,
-  //       child: Shimmer.fromColors(
-  //         baseColor: Colors.white,
-  //         highlightColor: Colors.grey[200],
-  //         child: Container(
-  //           width: double.infinity,
-  //           height: 190,
-  //           decoration: BoxDecoration(
-  //             color: Colors.blue,
-  //             borderRadius: BorderRadius.all(
-  //               Radius.circular(20),
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget loadingCard(BuildContext context) {
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 10),
-    //   child: Card(
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(30.0),
-    //     ),
-    //     elevation: 1,
-    //     child: Container(
-    //       height: 250,
-    //       decoration: BoxDecoration(
-    //         borderRadius: BorderRadius.circular(20),
-    //       ),
-    //       padding: EdgeInsets.all(24),
-    //       child: Shimmer.fromColors(
-    //         baseColor: Colors.blue[200],
-    //         highlightColor: Colors.blue[100],
-    //         child: Container(
-    //           width: double.infinity,
-    //           height: 250,
-    //           color: Colors.white,
-    //           decoration: BoxDecoration(
-    //             borderRadius: BorderRadius.circular(20),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
     return Column(
       children: [
         Container(
@@ -124,7 +60,7 @@ class CountryLoading extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   containerBox(context),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   containerBox(context),
                 ],
               ),
@@ -133,7 +69,7 @@ class CountryLoading extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   containerBox(context),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   containerBox(context),
                 ],
               ),
@@ -148,7 +84,6 @@ class CountryLoading extends StatelessWidget {
     return Container(
       height: 120,
       width: MediaQuery.of(context).size.width / 2.5,
-      // padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: kBackgroundColor,
         borderRadius: BorderRadius.circular(20),
@@ -156,7 +91,7 @@ class CountryLoading extends StatelessWidget {
           BoxShadow(
             color: kShadowColor,
             blurRadius: 5,
-            offset: Offset(1, 3), // changes position of shadow
+            offset: Offset(1, 3),
           ),
         ],
       ),
@@ -164,8 +99,6 @@ class CountryLoading extends StatelessWidget {
         baseColor: Colors.white,
         highlightColor: Colors.grey[200],
         child: Container(
-          // width: double.infinity,
-          // height: 190,
           height: 120,
           width: MediaQuery.of(context).size.width / 2.5,
           decoration: BoxDecoration(
@@ -190,7 +123,8 @@ class CountryChartLoading extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
+          padding:
+              const EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
           alignment: Alignment.centerLeft,
           child: Text(
             'Biểu đồ tổng số ca mắc Covid-19',
@@ -218,7 +152,6 @@ class CountryChartLoading extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              // padding: EdgeInsets.all(8),
               child: Shimmer.fromColors(
                 baseColor: Colors.white,
                 highlightColor: Colors.grey[200],

@@ -1,6 +1,6 @@
-import 'package:covid_track/resources/consts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../resources/consts.dart';
 
 class CounterDetail extends StatelessWidget {
   final int number;
@@ -14,6 +14,7 @@ class CounterDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
+      shadowColor: kShadowColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),

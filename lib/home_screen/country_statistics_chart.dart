@@ -1,11 +1,10 @@
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:covid_track/home_screen/models/country_summany.dart';
-import 'package:covid_track/home_screen/time_series_cases.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../resources/consts.dart';
+import 'models/country_summany.dart';
+import 'time_series_cases.dart';
 import 'chart.dart';
 
 class CountryStatistics extends StatelessWidget {
@@ -19,7 +18,8 @@ class CountryStatistics extends StatelessWidget {
       return Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
+            padding:
+                const EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
             alignment: Alignment.centerLeft,
             child: Text(
               'Biểu đồ tổng số ca mắc Covid-19',
@@ -68,13 +68,11 @@ class CountryStatistics extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 5),
       child: Card(
         elevation: 5,
+        shadowColor: kShadowColor,
         child: Container(
           height: 250,
-          padding: EdgeInsets.only(left: 5, top: 10, bottom: 10),
-          child: Chart(
-            _createData(summaryChartList),
-            animate: true,
-          ),
+          padding: const EdgeInsets.only(left: 5, top: 10, bottom: 10),
+          child: Chart(_createData(summaryChartList)),
         ),
       ),
     );

@@ -14,7 +14,7 @@ const kDeathColor = Color(0xFFFF4848);
 const kRecoverColor = Color(0xFF36C12C);
 const kPrimaryColor = Color(0xFF3382CC);
 const kSplashColor = Color(0xE6EFF6);
-final kShadowColor = Color(0xFFB7B7B7);
+final kShadowColor = Color(0xFFB7B7B7).withOpacity(0.3);
 final kActiveShadowColor = Color(0xFF4056C6).withOpacity(.15);
 
 MaterialColor swatchify(MaterialColor color, int value) {

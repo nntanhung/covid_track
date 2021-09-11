@@ -1,16 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:covid_track/youtube_screen/video_model.dart';
-
-import 'youtube_model.dart';
+import '../youtube_screen/youtube_model.dart';
 import 'package:http/http.dart' as http;
-import 'video_model.dart';
+import '../youtube_screen/video_model.dart';
 
-class APIService {
-  APIService._instantiate();
+class APIYoutubeServices {
+  APIYoutubeServices._instantiate();
 
-  static final APIService instance = APIService._instantiate();
+  static final APIYoutubeServices instance = APIYoutubeServices._instantiate();
 
   final String _baseUrl = 'www.googleapis.com';
   String _nextPageToken = '';
@@ -50,7 +48,6 @@ class APIService {
     Map<String, String> parameters = {
       'part': 'snippet',
       'playlistId': "PL1Vi4Nt_Cpb6q3onrLHLgi38Nmcpgbgp-",
-      // 'playlistId': playlistId,
       'maxResults': '6',
       'pageToken': _nextPageToken,
       'key': apiKey,

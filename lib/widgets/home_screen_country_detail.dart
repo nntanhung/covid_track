@@ -1,18 +1,16 @@
 import 'dart:convert';
-
-import 'package:covid_track/resources/consts.dart';
-import 'package:covid_track/widgets/home_screen_counter_detail.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Country extends StatefulWidget {
+import '../resources/consts.dart';
+import '../widgets/home_screen_counter_detail.dart';
+
+class CountryDetail extends StatefulWidget {
   @override
   _CountryCovidPageState createState() => _CountryCovidPageState();
 }
 
-class _CountryCovidPageState extends State<Country> {
-  // Future<GlobalModel> globalData;
+class _CountryCovidPageState extends State<CountryDetail> {
   List countryData;
   var isLoading = false;
   ScrollController _scrollController = ScrollController();
@@ -49,7 +47,6 @@ class _CountryCovidPageState extends State<Country> {
     });
   }
 
-  // @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
@@ -65,11 +62,10 @@ class _CountryCovidPageState extends State<Country> {
       child: ListView.builder(
         itemCount: countryData == null ? 0 : countryData.length,
         controller: _scrollController,
-        // physics: NeverScrollableScrollPhysics(),
-        // shrinkWrap: true,
         itemBuilder: (context, index) {
           return Card(
             margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+            shadowColor: kShadowColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
@@ -77,7 +73,6 @@ class _CountryCovidPageState extends State<Country> {
             color: kBackgroundColor,
             child: ExpansionTile(
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text('${index + 1}'),
                   Padding(

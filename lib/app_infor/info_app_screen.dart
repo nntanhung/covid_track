@@ -1,8 +1,8 @@
-import 'package:covid_track/resources/consts.dart';
-import 'package:covid_track/infor_screen/faqs.dart';
-import 'package:covid_track/widgets/my_header.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../resources/consts.dart';
+import '../infor_screen/faqs.dart';
+import '../widgets/my_header.dart';
 
 class InforAppPage extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _InforAppPageState extends State<InforAppPage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -59,7 +59,7 @@ class _InforAppPageState extends State<InforAppPage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Text(
                           'Ngô Nguyễn Tấn Hưng'.toUpperCase(),
                           style: TextStyle(
@@ -95,7 +95,8 @@ Widget _inforListView() {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Card(
-          elevation: 5,
+          elevation: 3,
+          shadowColor: kShadowColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),

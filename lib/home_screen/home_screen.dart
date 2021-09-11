@@ -1,16 +1,15 @@
-import 'package:covid_track/loading_screen/country_loading.dart';
-import 'package:covid_track/home_screen/models/country_model.dart';
-import 'package:covid_track/home_screen/country_statistics_chart.dart';
-import 'package:covid_track/home_screen/country_statistics.dart';
-import 'package:covid_track/home_screen/models/country_summany.dart';
-import 'package:covid_track/home_screen/tracker.dart';
-import 'package:covid_track/services/covid_services.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
+import '../loading_screen/country_loading.dart';
+import '../services/covid_services.dart';
 import '../resources/consts.dart';
 import '../widgets/my_header.dart';
+import 'models/country_model.dart';
+import 'country_statistics_chart.dart';
+import 'country_statistics.dart';
+import 'models/country_summany.dart';
+import 'tracker.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -92,89 +91,10 @@ class _HomePageState extends State<HomePage> {
                       textTop: "Ở nhà là\nYÊU NƯỚC",
                       offset: offset,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 26, right: 25, bottom: 20),
-                      child: TypeAheadFormField(
-                        textFieldConfiguration: TextFieldConfiguration(
-                          controller: textEditingController,
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(fontSize: 16),
-                            contentPadding: EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(40),
-                              ),
-                            ),
-                            suffixIcon: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) =>
-                                              textEditingController.clear());
-                                    },
-                                    child: FocusScope.of(context).hasFocus
-                                        ? Icon(Icons.clear)
-                                        : Icon(
-                                            Icons.clear,
-                                            color: Colors.transparent,
-                                          )),
-                                const SizedBox(width: 10),
-                                Icon(Icons.search),
-                                const SizedBox(width: 10)
-                              ],
-                            ),
-                            prefixIcon: Icon(
-                              Icons.location_on,
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                        ),
-                        suggestionsCallback: (pattern) {
-                          return _getSuggestions(snapshot.data, pattern);
-                        },
-                        itemBuilder: (context, suggestion) {
-                          return ListTile(
-                            title: Text(suggestion),
-                          );
-                        },
-                        transitionBuilder:
-                            (context, suggestionsBox, controller) {
-                          return suggestionsBox;
-                        },
-                        onSuggestionSelected: (suggestion) {
-                          this.textEditingController.text = suggestion;
-                          setState(() {
-                            summaryChartList = covidService.getCountrySummary(
-                                snapshot.data
-                                    .firstWhere((element) =>
-                                        element.country == suggestion)
-                                    .slug);
-                            summaryNewList = covidService.getCountrySummaryNew(
-                                snapshot.data
-                                    .firstWhere((element) =>
-                                        element.country == suggestion)
-                                    .slug);
-                            FocusScope.of(context).unfocus();
-                          });
-                        },
-                        errorBuilder: (BuildContext context, Object error) =>
-                            Container(
-                          padding: EdgeInsets.only(left: 15),
-                          height: 40,
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Không có dữ liệu',
-                            style:
-                                TextStyle(color: Theme.of(context).errorColor),
-                          ),
-                        ),
-                      ),
-                    ),
+                    textFieldCustom(context, snapshot),
                     Container(
-                      padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -245,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                           default:
                             return !snapshot.hasData
                                 ? Center(
-                                    child: Text("Empty"),
+                                    child: Text("Không có dữ liệu"),
                                   )
                                 : CountryStatistics(
                                     summaryChartList: snapshot.data,
@@ -259,5 +179,85 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         });
+  }
+
+  Widget textFieldCustom(
+      BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 26, right: 25, bottom: 20),
+      child: TypeAheadFormField(
+        textFieldConfiguration: TextFieldConfiguration(
+          controller: textEditingController,
+          decoration: InputDecoration(
+            hintText: 'Nhập quốc gia cần tìm',
+            hintStyle: TextStyle(fontSize: 15),
+            contentPadding: EdgeInsets.all(10),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(40),
+              ),
+            ),
+            suffixIcon: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        textEditingController.clear();
+                      });
+                    },
+                    child: FocusScope.of(context).hasFocus
+                        ? Icon(Icons.clear)
+                        : Icon(
+                            Icons.clear,
+                            color: Colors.transparent,
+                          )),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Icon(Icons.search),
+                ),
+              ],
+            ),
+            prefixIcon: Icon(
+              Icons.location_on,
+              color: kPrimaryColor,
+            ),
+          ),
+        ),
+        suggestionsCallback: (pattern) {
+          return _getSuggestions(snapshot.data, pattern);
+        },
+        itemBuilder: (context, suggestion) {
+          return ListTile(
+            title: Text(suggestion),
+          );
+        },
+        transitionBuilder: (context, suggestionsBox, controller) {
+          return suggestionsBox;
+        },
+        onSuggestionSelected: (suggestion) {
+          this.textEditingController.text = suggestion;
+          setState(() {
+            summaryChartList = covidService.getCountrySummary(snapshot.data
+                .firstWhere((element) => element.country == suggestion)
+                .slug);
+            summaryNewList = covidService.getCountrySummaryNew(snapshot.data
+                .firstWhere((element) => element.country == suggestion)
+                .slug);
+            FocusScope.of(context).unfocus();
+          });
+        },
+        errorBuilder: (BuildContext context, Object error) => Container(
+          padding: const EdgeInsets.only(left: 15),
+          height: 40,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Không có dữ liệu',
+            style: TextStyle(color: Theme.of(context).errorColor),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,18 +1,16 @@
 import 'package:covid_track/resources/consts.dart';
-import 'package:covid_track/splash_screen/splash_page.dart';
+import 'package:covid_track/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      // statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.dark));
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,9 +21,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: Theme.of(context)
             .appBarTheme
             .copyWith(brightness: Brightness.light),
-        scaffoldBackgroundColor: Colors.grey.shade100,
+        scaffoldBackgroundColor: kBackgroundColor,
       ),
-      home: SplashPage(),
+      home: SplashScreen(),
     );
   }
 }

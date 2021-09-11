@@ -1,11 +1,11 @@
-import 'package:covid_track/infor_screen/call.dart';
-import 'package:covid_track/resources/consts.dart';
-import 'package:covid_track/infor_screen/infor_item_images.dart';
-import 'package:covid_track/infor_screen/faqs.dart';
-import 'package:covid_track/data/list_data.dart';
-import 'package:covid_track/widgets/my_header.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../infor_screen/call.dart';
+import '../resources/consts.dart';
+import '../infor_screen/infor_item_images.dart';
+import '../infor_screen/faqs.dart';
+import '../data/list_data.dart';
+import '../widgets/my_header.dart';
 
 class InfoPage extends StatefulWidget {
   @override
@@ -69,9 +69,7 @@ class _InfoPageState extends State<InfoPage> {
                     style: kHeadingTextStyle,
                   ),
                   _faqsListView(),
-                  SizedBox(
-                    height: 25,
-                  ),
+                  const SizedBox(height: 25),
                 ],
               ),
             ),
@@ -94,9 +92,10 @@ Widget _faqsListView() {
     shrinkWrap: true,
     itemBuilder: (context, index) {
       return Card(
-        elevation: 3,
+        elevation: 2,
+        shadowColor: kShadowColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: ExpansionTile(
           title: Text(

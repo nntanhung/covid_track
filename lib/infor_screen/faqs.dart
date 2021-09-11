@@ -53,6 +53,30 @@ class DataSource {
               "lây truyền qua tiếp xúc với các giọt đường hô hấp hơn là qua không khí."
     },
     {
+      "question":
+          "Tôi nên làm gì khi nếu tôi hoặc ai đó trong nhà tôi mắc bệnh",
+      "answer": "Những người đã tiếp xúc gần với người mắc COVID-19-ngoại trừ những người đã nhiễm COVID-19 trong khoảng"
+          " 3 tháng vừa qua hoặc những người đã được tiêm chủng đầy đủ."
+          "\n1. Những người đã xét nghiệm dương tính với COVID-19 trong vòng 3 tháng qua và đã khỏi bệnh không cần"
+          "phải cách ly hoặc xét nghiệm lại, miễn là họ không bộc lộ các triệu chứng mới."
+          "\n2. Những người tái phát triển các triệu chứng trong vòng 3 tháng kể từ lần đầu tiên"
+          " bị bệnh COVID-19 "
+          "có thể cần phải được xét nghiệm lại nếu không có "
+          "nguyên nhân nào khác để hiểu rõ các triệu chứng của họ."
+          "\n3. Những người đã tiếp xúc gần với người bị bệnh COVID-19 không buộc phải cách ly "
+          "nếu họ đã được tiêm chủng đầy đủ ngừa bệnh dịch và không thấy có các triệu chứng."
+    },
+    {
+      "question": "Khi nào tôi cần được chăm sóc khẩn cấp nếu mắc Covid-19",
+      "answer":
+          "Nếu có người đang biểu hiện bất cứ dấu hiệu nào trong số này, hãy tìm đến chăm sóc y tế cấp cứu ngay lập tức"
+              "\n• Khó thở"
+              "\n• Đau hoặc tức ngực thường xuyên"
+              "\n• Trạng thái lẫn lộn mới"
+              "\n• Không thể thức dậy hay duy trì sự tỉnh táo"
+              "\n• Da, móng tay hoặc môi nhợt nhạt, xám hoặc có màu xanh, tùy vào tông da."
+    },
+    {
       "question": "Người không có triệu chứng có thể lây truyền virus không?",
       "answer": "Có. Người nhiễm bệnh có thể lây truyền virus cả khi họ "
           "có triệu chứng và khi họ không có triệu chứng. Do đó, cần "
@@ -127,7 +151,6 @@ class DataInfor {
       "question": "Nguồn API",
       "answer": "https://api.covid19api.com/summary"
           "\nhttps://disease.sh/v3/covid-19/countries"
-
     },
     {
       "question": "Liên hệ",

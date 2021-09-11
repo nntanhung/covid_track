@@ -1,14 +1,13 @@
 import 'dart:convert';
-
-import 'package:covid_track/home_screen/models/country_model.dart';
-import 'package:covid_track/home_screen/models/country_summany.dart';
 import 'package:http/http.dart' as http;
+
+import '../home_screen/models/country_model.dart';
+import '../home_screen/models/country_summany.dart';
 
 class CovidService {
   Future<CountryModel> getGlobalSummary() async {
     final data =
         await http.Client().get("https://disease.sh/v3/covid-19/countries");
-    // final data = await http.Client().get("https://api.covid19api.com/summary");
 
     if (data.statusCode != 200) throw Exception();
 
@@ -20,7 +19,6 @@ class CovidService {
   Future<List<CountrySummaryChartModel>> getCountrySummary(String slug) async {
     final data = await http.Client()
         .get("https://api.covid19api.com/total/dayone/country/" + slug);
-    // .get("https://disease.sh/v3/covid-19/countries/" + slug);
 
     if (data.statusCode != 200) throw Exception();
 
@@ -45,7 +43,6 @@ class CovidService {
 
   Future<List<CountryModel>> getCountryList() async {
     final data =
-        // await http.Client().get("https://api.covid19api.com/countries");
         await http.Client().get('https://nntanhung.github.io/countries.json');
 
     if (data.statusCode != 200) throw Exception();

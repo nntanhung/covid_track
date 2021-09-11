@@ -1,20 +1,20 @@
 import 'dart:convert';
-
-import 'package:covid_track/resources/consts.dart';
-import 'package:covid_track/widgets/home_screen_counter_detail.dart';
-import 'package:covid_track/home_screen/models/global_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Global extends StatefulWidget {
+import '../resources/consts.dart';
+import '../widgets/home_screen_counter_detail.dart';
+import '../home_screen/models/global_model.dart';
+
+class GlobalDetail extends StatefulWidget {
   @override
-  _GlobalState createState() => _GlobalState();
+  _GlobalDetailState createState() => _GlobalDetailState();
 }
 
 Future<GlobalModel> globalData;
 var isLoading = false;
 
-class _GlobalState extends State<Global> {
+class _GlobalDetailState extends State<GlobalDetail> {
   Future<GlobalModel> _fetchGlobalData() async {
     http.Response response =
         await http.get('https://disease.sh/v3/covid-19/all');
@@ -98,7 +98,6 @@ class _GlobalState extends State<Global> {
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }
-                // By default, show a loading spinner.
                 return Center(
                   child: CircularProgressIndicator(),
                 );

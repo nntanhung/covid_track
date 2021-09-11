@@ -1,5 +1,6 @@
-import 'package:covid_track/resources/consts.dart';
 import 'package:flutter/material.dart';
+
+import '../resources/consts.dart';
 
 class NavigationOption extends StatelessWidget {
   final String title;

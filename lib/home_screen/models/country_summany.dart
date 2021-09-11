@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class CountrySummaryChartModel {
   final String country;
   final int confirmed;

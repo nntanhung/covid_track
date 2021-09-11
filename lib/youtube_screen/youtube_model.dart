@@ -1,8 +1,6 @@
-
 import 'video_model.dart';
 
 class Channel {
-
   final String id;
   final String title;
   final String profilePictureUrl;
@@ -34,9 +32,4 @@ class Channel {
       uploadPlaylistId: map['contentDetails']['relatedPlaylists']['uploads'],
     );
   }
-
 }
-
-
-
-

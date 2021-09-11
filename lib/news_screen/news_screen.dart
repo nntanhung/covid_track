@@ -1,18 +1,19 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:covid_track/resources/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:webfeed/webfeed.dart';
 
-class NewsPage extends StatefulWidget {
+import '../resources/consts.dart';
+
+class NewsScreen extends StatefulWidget {
   @override
-  NewsPageState createState() => NewsPageState();
+  NewsScreenState createState() => NewsScreenState();
 }
 
-class NewsPageState extends State<NewsPage> {
+class NewsScreenState extends State<NewsScreen> {
   static const String FEED_URL = 'https://vietnamnet.vn/rss/covid-19.rss';
   // 'https://dantri.com.vn/suc-khoe/dai-dich-covid-19.rss';
 
@@ -53,6 +54,7 @@ class NewsPageState extends State<NewsPage> {
     loadFeed().then((result) {
       if (null == result || result.toString().isEmpty) {
         updateTitle(feedLoadErrorMsg);
+        print(result.description);
         return;
       }
       updateFeed(result);
@@ -64,6 +66,7 @@ class NewsPageState extends State<NewsPage> {
     try {
       final client = http.Client();
       final response = await client.get(FEED_URL);
+
       return RssFeed.parse(response.body);
     } catch (e) {}
     return null;
@@ -79,7 +82,7 @@ class NewsPageState extends State<NewsPage> {
   title(title) {
     return Text(
       title,
-      style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.w500),
+      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
       maxLines: 2,
       overflow: TextOverflow.clip,
     );
@@ -88,80 +91,69 @@ class NewsPageState extends State<NewsPage> {
   subtitle(subTitle) {
     return Text(
       DateFormat("HH:mm - dd/MM/yyyy").format((subTitle)),
-      // subTitle,
       style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
       overflow: TextOverflow.ellipsis,
     );
   }
 
-  description(desCription) {
+  description(description) {
     return Text(
-      desCription,
-      // subTitle,
+      description,
       style: TextStyle(
           fontSize: 14.5, fontWeight: FontWeight.w500, color: kTitleTextColor),
-      maxLines: 4,
+      maxLines: 3,
       overflow: TextOverflow.ellipsis,
     );
   }
 
   thumbnail(imageUrl) {
     return Padding(
-      padding: EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.only(left: 10),
       child: CachedNetworkImage(
         placeholder: (context, url) => Image.asset(placeholderImg),
         imageUrl: imageUrl,
-        height: 50,
-        width: 70,
+        height: 110,
+        width: 150,
         alignment: Alignment.center,
         fit: BoxFit.fill,
       ),
     );
   }
 
-  rightIcon() {
-    return Icon(
-      Icons.touch_app_outlined,
-      color: Colors.grey,
-      size: 25.0,
-    );
-  }
-
-  list() {
+  listNews() {
     return ListView.builder(
       itemCount: _feed.items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = _feed.items[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
-          child: Card(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: ListTile(
-                title: title(item.title),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: subtitle(item.pubDate),
+        return Card(
+          elevation: 5,
+          shadowColor: kShadowColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: InkWell(
+            onTap: () => openFeed(item.link),
+            child: Row(
+              children: [
+                thumbnail(item.content.images.first ??
+                    'https://www.viet247.net/images/noimage_food_viet247.jpg'),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        title(item.title),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: subtitle(item.pubDate),
+                        ),
+                        description(item.description),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: description(item.description),
-                    ),
-                  ],
+                  ),
                 ),
-                leading: Container(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Image.asset("assets/no_image.png")),
-                contentPadding: EdgeInsets.all(5.0),
-                onTap: () => openFeed(item.link),
-              ),
+              ],
             ),
           ),
         );
@@ -182,18 +174,13 @@ class NewsPageState extends State<NewsPage> {
         systemOverlayStyle:
             SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       ),
-
-      // appBar: new PreferredSize(
-      //   child: GradientAppBar(_title),
-      //   preferredSize: new Size(MediaQuery.of(context).size.width, 150.0),
-      // ),
       body: isFeedEmpty()
           ? Center(
               child: CircularProgressIndicator(),
             )
           : RefreshIndicator(
               key: _refreshKey,
-              child: list(),
+              child: listNews(),
               onRefresh: () => load(),
             ),
     );
