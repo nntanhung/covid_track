@@ -12,14 +12,13 @@ class InfoItemImages extends StatelessWidget {
   _builCard(int index) {
     return Container(
       width: 120,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: kShadowColor,
+            color: kShadowColor.withOpacity(0.3),
             spreadRadius: 1,
             blurRadius: 10,
-            offset: Offset(1, 2),
+            offset: Offset(1, 1),
           ),
         ],
         color: kBackgroundColor,
@@ -31,7 +30,7 @@ class InfoItemImages extends StatelessWidget {
           Image.asset(
             listDataInfors[index].img,
           ),
-          Container(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
               listDataInfors[index].description,
@@ -46,16 +45,16 @@ class InfoItemImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
       child: Container(
-        height: 220,
+        height: 230,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: kShadowColor,
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: Offset(1, 2),
+              color: kShadowColor.withOpacity(0.1),
+              spreadRadius: 5,
+              blurRadius: 5,
+              offset: Offset(2, 2),
             ),
           ],
           color: kBackgroundColor,
@@ -65,7 +64,7 @@ class InfoItemImages extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 20, top: 10),
+              padding: const EdgeInsets.only(left: 20, top: 12),
               child: Text(title,
                   style: TextStyle(
                     fontSize: 16,
@@ -78,12 +77,12 @@ class InfoItemImages extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: listDataInfors.length,
                 itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 0, 12),
-                          child: _builCard(index)),
-                    ],
+                  return Container(
+                    padding: index == listDataInfors.length - 1
+                        ? const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 12)
+                        : const EdgeInsets.fromLTRB(15, 12, 0, 12),
+                    child: _builCard(index),
                   );
                 },
               ),

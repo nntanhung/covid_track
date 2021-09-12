@@ -61,15 +61,16 @@ class _CountryCovidPageState extends State<CountryDetail> {
     return Container(
       child: ListView.builder(
         itemCount: countryData == null ? 0 : countryData.length,
+        physics: BouncingScrollPhysics(),
         controller: _scrollController,
         itemBuilder: (context, index) {
           return Card(
             margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+            elevation: 3,
             shadowColor: kShadowColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            elevation: 3,
             color: kBackgroundColor,
             child: ExpansionTile(
               title: Row(

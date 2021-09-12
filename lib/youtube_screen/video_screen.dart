@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../resources/consts.dart';
-
 class VideoScreen extends StatefulWidget {
   final String id;
   final String description;

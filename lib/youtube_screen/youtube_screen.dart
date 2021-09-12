@@ -98,7 +98,7 @@ class _YouTubeScreenState extends State<YouTubeScreen> {
                             children: [
                               Text(
                                 video.title,
-                                maxLines: 3,
+                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

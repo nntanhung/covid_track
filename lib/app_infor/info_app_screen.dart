@@ -25,8 +25,8 @@ class _InforAppPageState extends State<InforAppPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
-                  elevation: 3,
-                  // color: kPrimaryColor,
+                  elevation: 5,
+                  shadowColor: kShadowColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -95,7 +95,7 @@ Widget _inforListView() {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Card(
-          elevation: 3,
+          elevation: 5,
           shadowColor: kShadowColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),

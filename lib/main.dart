@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: Theme.of(context)
             .appBarTheme
             .copyWith(brightness: Brightness.light),
-        scaffoldBackgroundColor: kBackgroundColor,
+        scaffoldBackgroundColor: Colors.grey.shade100,
       ),
       home: SplashScreen(),
     );
