@@ -13,7 +13,7 @@ class Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2.2,
+      width: MediaQuery.of(context).size.width / 2.3,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: kBackgroundColor,

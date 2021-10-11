@@ -11,8 +11,8 @@ class APIYoutubeServices {
   static final APIYoutubeServices instance = APIYoutubeServices._instantiate();
 
   final String _baseUrl = 'www.googleapis.com';
-  String _nextPageToken = '';
   String apiKey = 'AIzaSyDdN27BPlWqASgg972-T6LRKm6TaQtPG0E';
+  String _nextPageToken = '';
 
   Future<Channel> fetchChannel({String channelId}) async {
     Map<String, String> parameters = {

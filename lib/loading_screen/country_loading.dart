@@ -83,10 +83,10 @@ class CountryLoading extends StatelessWidget {
   Widget containerBox(BuildContext context) {
     return Container(
       height: 120,
-      width: MediaQuery.of(context).size.width / 2.5,
+      width: MediaQuery.of(context).size.width / 2.3,
       decoration: BoxDecoration(
         color: kBackgroundColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
             color: kShadowColor,
@@ -124,7 +124,7 @@ class CountryChartLoading extends StatelessWidget {
       children: [
         Container(
           padding:
-              const EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
+              const EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 5),
           alignment: Alignment.centerLeft,
           child: Text(
             'Biểu đồ tổng số ca mắc Covid-19',
@@ -141,38 +141,36 @@ class CountryChartLoading extends StatelessWidget {
   }
 
   Widget loadingChartCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: Column(
-        children: [
-          Card(
-            elevation: 5,
-            child: Container(
-              height: 250,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Shimmer.fromColors(
-                baseColor: Colors.white,
-                highlightColor: Colors.grey[200],
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        color: Colors.white,
-                      ),
+    return Column(
+      children: [
+        Card(
+          elevation: 5,
+          shadowColor: kShadowColor,
+          child: Container(
+            height: 250,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Shimmer.fromColors(
+              baseColor: Colors.white,
+              highlightColor: Colors.grey[200],
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Text("Cập nhật từ: " + '--/-- đến --/--'),
-          ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Text("Cập nhật từ: " + '--/-- đến --/--'),
+        ),
+      ],
     );
   }
 }

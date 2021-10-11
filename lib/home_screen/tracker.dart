@@ -40,7 +40,7 @@ class _TrackerState extends State<Tracker> {
           Expanded(
             child: Container(
               child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 0),
+                duration: Duration(milliseconds: 1500),
                 child: navigationStatus == NavigationStatus.COUNTRY
                     ? CountryDetail()
                     : GlobalDetail(),

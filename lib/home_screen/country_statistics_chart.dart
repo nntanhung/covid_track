@@ -14,53 +14,54 @@ class CountryStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (summaryChartList.length != 0) {
-      return Column(
-        children: [
-          Container(
-            padding:
-                const EdgeInsets.only(top: 25, left: 20, right: 20, bottom: 5),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Biểu đồ tổng số ca mắc Covid-19',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: kTitleTextColor,
+    return summaryChartList.isNotEmpty
+        ? Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(
+                    top: 25, left: 15, right: 15, bottom: 5),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Biểu đồ tổng số ca mắc Covid-19',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: kTitleTextColor,
+                  ),
+                ),
+              ),
+              buildCardChart(summaryChartList),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "Cập nhật từ: " +
+                      DateFormat("dd/MM/yyyy").format(
+                          summaryChartList[summaryChartList.length - 1].date) +
+                      " đến " +
+                      DateFormat("dd/MM/yyyy").format(summaryChartList[0].date),
+                ),
+              ),
+            ],
+          )
+        : Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 150,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Không có dữ liệu về quốc gia hoặc vùng lãnh thổ này",
+                      style: TextStyle(fontSize: 25, color: kPrimaryColor),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          buildCardChart(summaryChartList),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Text(
-              "Cập nhật từ: " +
-                  '${DateFormat("dd/MM/yyyy").format((summaryChartList[0].date))}' +
-                  " đến ${DateFormat("dd/MM/yyyy").format((summaryChartList[summaryChartList.length - 1].date))}",
-            ),
-          ),
-        ],
-      );
-    } else
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: 150,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Không có dữ liệu về quốc gia hoặc vùng lãnh thổ này",
-                  style: TextStyle(fontSize: 25, color: kPrimaryColor),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+          );
   }
 
   Widget buildCardChart(List<CountrySummaryChartModel> summaryChartList) {

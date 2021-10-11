@@ -15,9 +15,9 @@ class InfoItemImages extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: kShadowColor.withOpacity(0.3),
+            color: kShadowColor,
             spreadRadius: 1,
-            blurRadius: 10,
+            blurRadius: 5,
             offset: Offset(1, 1),
           ),
         ],
@@ -51,8 +51,8 @@ class InfoItemImages extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: kShadowColor.withOpacity(0.1),
-              spreadRadius: 5,
+              color: kShadowColor.withOpacity(0.3),
+              spreadRadius: 2,
               blurRadius: 5,
               offset: Offset(2, 2),
             ),
@@ -79,9 +79,8 @@ class InfoItemImages extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                     padding: index == listDataInfors.length - 1
-                        ? const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 12)
-                        : const EdgeInsets.fromLTRB(15, 12, 0, 12),
+                        ? const EdgeInsets.all(12)
+                        : const EdgeInsets.fromLTRB(12, 12, 0, 12),
                     child: _builCard(index),
                   );
                 },

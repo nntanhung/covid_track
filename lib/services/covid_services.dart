@@ -11,7 +11,7 @@ class CovidService {
 
     if (data.statusCode != 200) throw Exception();
 
-    CountryModel summary = new CountryModel.fromJson(json.decode(data.body));
+    CountryModel summary = CountryModel.fromJson(json.decode(data.body));
 
     return summary;
   }
@@ -24,7 +24,9 @@ class CovidService {
 
     List<CountrySummaryChartModel> summaryList =
         (json.decode(data.body) as List)
-            .map((item) => new CountrySummaryChartModel.fromJson(item))
+            .reversed
+            .map((item) => CountrySummaryChartModel.fromJson(item))
+            .take(90)
             .toList();
 
     return summaryList;
@@ -48,7 +50,7 @@ class CovidService {
     if (data.statusCode != 200) throw Exception();
 
     List<CountryModel> countries = (json.decode(data.body) as List)
-        .map((item) => new CountryModel.fromJson(item))
+        .map((item) => CountryModel.fromJson(item))
         .toList();
 
     return countries;

@@ -45,11 +45,9 @@ class _HomePageState extends State<HomePage> {
 
   List<String> _getSuggestions(List<CountryModel> list, String query) {
     List<String> matches = [];
-
     for (var item in list) {
       matches.add(item.country);
     }
-
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
   }
@@ -75,116 +73,116 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: countryList,
-        builder: (context, snapshot) {
-          return GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: RefreshIndicator(
-              key: _refreshKey,
-              onRefresh: () => onRefresh(),
-              child: SingleChildScrollView(
-                controller: controller,
-                child: Column(
-                  children: [
-                    MyHeader(
-                      image: "assets/icons/Drcorona.svg",
-                      textTop: "Ở nhà là\nYÊU NƯỚC",
-                      offset: offset,
-                    ),
-                    textFieldCustom(context, snapshot),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "Thông tin dịch bệnh",
+      future: countryList,
+      builder: (context, snapshot) {
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: RefreshIndicator(
+            key: _refreshKey,
+            onRefresh: () => onRefresh(),
+            child: SingleChildScrollView(
+              controller: controller,
+              child: Column(
+                children: [
+                  MyHeader(
+                    image: "assets/icons/Drcorona.svg",
+                    textTop: "Ở nhà là\nYÊU NƯỚC",
+                    offset: offset,
+                  ),
+                  textFieldCustom(context, snapshot),
+                  Container(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Thông tin dịch bệnh",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: kTitleTextColor,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => Tracker(),
+                            ));
+                          },
+                          child: Text(
+                            "Xem chi tiết",
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 14,
+                              color: kPrimaryColor,
                               fontWeight: FontWeight.bold,
-                              color: kTitleTextColor,
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => Tracker(),
-                              ));
-                            },
-                            child: Text(
-                              "Xem chi tiết",
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: kPrimaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
-                    FutureBuilder(
-                      future: summaryNewList,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError)
+                  ),
+                  FutureBuilder(
+                    future: summaryNewList,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError)
+                        return Center(
+                          child: Text("Vui lòng kiểm tra lại kết nối mạng"),
+                        );
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
                           return Center(
-                            child: Text("Vui lòng kiểm tra lại kết nối mạng"),
+                            child: Container(
+                                alignment: Alignment.center,
+                                child: CountryLoading(inputTextLoading: false)),
                           );
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.waiting:
-                            return Center(
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  child:
-                                      CountryLoading(inputTextLoading: false)),
-                            );
-                          default:
-                            return !snapshot.hasData
-                                ? Center(
-                                    child: Text(""),
-                                  )
-                                : CountryStatisticsNew(
-                                    summaryNewList: snapshot.data,
-                                  );
-                        }
-                      },
-                    ),
-                    FutureBuilder(
-                      future: summaryChartList,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) return null;
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.waiting:
-                            return Center(
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  child: CountryChartLoading(
-                                      inputTextLoading: false)),
-                            );
-                          default:
-                            return !snapshot.hasData
-                                ? Center(
-                                    child: Text("Không có dữ liệu"),
-                                  )
-                                : CountryStatistics(
-                                    summaryChartList: snapshot.data,
-                                  );
-                        }
-                      },
-                    ),
-                  ],
-                ),
+                        default:
+                          return !snapshot.hasData
+                              ? Center(
+                                  child: Text(""),
+                                )
+                              : CountryStatisticsNew(
+                                  summaryNewList: snapshot.data,
+                                );
+                      }
+                    },
+                  ),
+                  FutureBuilder(
+                    future: summaryChartList,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) return null;
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return Center(
+                            child: Container(
+                                alignment: Alignment.center,
+                                child: CountryChartLoading(
+                                    inputTextLoading: false)),
+                          );
+                        default:
+                          return !snapshot.hasData
+                              ? Center(
+                                  child: Text("Không có dữ liệu"),
+                                )
+                              : CountryStatistics(
+                                  summaryChartList: snapshot.data,
+                                );
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   Widget textFieldCustom(
       BuildContext context, AsyncSnapshot<dynamic> snapshot) {
     return Padding(
-      padding: const EdgeInsets.only(left: 26, right: 25, bottom: 20),
+      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
       child: TypeAheadFormField(
         textFieldConfiguration: TextFieldConfiguration(
           controller: textEditingController,

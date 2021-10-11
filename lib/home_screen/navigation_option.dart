@@ -28,7 +28,7 @@ class NavigationOption extends StatelessWidget {
             color: selected ? kPrimaryColor : Colors.grey[400],
           ),
           Text(
-            title,
+            ' ' + title,
             style: TextStyle(
               color: selected ? kPrimaryColor : Colors.grey[400],
               fontSize: 16,

@@ -61,7 +61,7 @@ class _CountryCovidPageState extends State<CountryDetail> {
     return Container(
       child: ListView.builder(
         itemCount: countryData == null ? 0 : countryData.length,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         controller: _scrollController,
         itemBuilder: (context, index) {
           return Card(

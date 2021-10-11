@@ -88,7 +88,7 @@ class NewsScreenState extends State<NewsScreen> {
     );
   }
 
-  subtitle(subTitle) {
+  dateTime(subTitle) {
     return Text(
       DateFormat("HH:mm - dd/MM/yyyy").format((subTitle)),
       style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
@@ -125,35 +125,39 @@ class NewsScreenState extends State<NewsScreen> {
       itemCount: _feed.items.length,
       itemBuilder: (BuildContext context, int index) {
         final item = _feed.items[index];
-        return Card(
-          elevation: 5,
-          shadowColor: kShadowColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: InkWell(
-            onTap: () => openFeed(item.link),
-            child: Row(
-              children: [
-                thumbnail(item.content.images.first ??
-                    'https://www.viet247.net/images/noimage_food_viet247.jpg'),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        title(item.title),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: subtitle(item.pubDate),
-                        ),
-                        description(item.description),
-                      ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Card(
+            elevation: 5,
+            shadowColor: kShadowColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: InkWell(
+              onTap: () => openFeed(item.link),
+              child: Row(
+                children: [
+                  thumbnail(item.content.images.isNotEmpty
+                      ? item.content.images.first
+                      : 'https://www.viet247.net/images/noimage_food_viet247.jpg'),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          title(item.title),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: dateTime(item.pubDate),
+                          ),
+                          description(item.description),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

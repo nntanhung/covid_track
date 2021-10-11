@@ -36,16 +36,6 @@ class _TabBarPageState extends State<TabBarPage>
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        // body: TabBarView(
-        //   children: <Widget>[
-        //     HomePage(),
-        //     InfoPage(),
-        //     NewsPage(),
-        //     YouTubePage(),
-        //     InforAppPage(),
-        //   ],
-        //   controller: controller,
-        // ),
         body: IndexedStack(
           children: <Widget>[
             HomePage(),

@@ -73,7 +73,7 @@ class _YouTubeScreenState extends State<YouTubeScreen> {
                   width: double.infinity,
                   height: 190,
                   child: FadeInImage.assetNetwork(
-                    image: video.thumbnailUrl != null
+                    image: video.title != "Private video"
                         ? video.thumbnailUrl
                         : 'https://i.ytimg.com/vi/2UlFWK1pw9E/hqdefault.jpg',
                     placeholder: "assets/loading.gif",
